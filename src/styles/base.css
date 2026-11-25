@@ -1,0 +1,94 @@
+/**
+ * base.css —— 全局重置 / 页面背景 / 滚动条
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+/* 桌面端整页不出现滚动条：高度锁死，内部靠缩放适配 */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei', system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(900px 420px at 8% -12%, rgba(94, 234, 212, 0.09), transparent 62%),
+    radial-gradient(820px 420px at 100% -4%, rgba(122, 162, 255, 0.1), transparent 62%),
+    radial-gradient(700px 500px at 50% 110%, rgba(167, 139, 250, 0.07), transparent 65%),
+    var(--bg);
+  /* 不用 background-attachment: fixed —— 它会额外锁一层整窗大小的绘制层 */
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 输入框里选中文字时也用主题色，避免默认的亮蓝 */
+::selection {
+  background: rgba(94, 234, 212, 0.28);
+  color: #eef6f4;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3243;
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a455c;
+  background-clip: content-box;
+}
+
+/* ---------- 窗口不可见时降载（最小化 / 收进托盘） ----------
+ * 水位球、光晕、液面波纹都是无限循环动画，每帧都要重新合成一次图层；
+ * 窗口看不见的时候继续跑纯属浪费 CPU / 显存，也让内存降不下来。
+ * 由 App.vue 根据 document.hidden 切换 html.app-idle。 */
+html.app-idle .orb-wrap,
+html.app-idle .orb,
+html.app-idle .orb-glow,
+html.app-idle .orb-wave-track,
+html.app-idle .orb-center b {
+  animation-play-state: paused !important;
+}
+
+html.app-idle .el-overlay {
+  backdrop-filter: none;
+}
+
+/* preload 没加载上时的排错提示 */
+.bridge-error {
+  padding: 40px;
+  font-family: system-ui, sans-serif;
+}
+
+.bridge-error h2 {
+  margin: 0 0 8px;
+  color: #ffb454;
+  font-size: 18px;
+}
+
+.bridge-error p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}

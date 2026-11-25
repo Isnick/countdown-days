@@ -1,0 +1,14 @@
+# 统一换行符，避免 Windows / macOS 协作时整文件 diff
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.icns binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# 这些文件不参与 diff 统计，避免噪音
+package-lock.json linguist-generated=true
+src/utils/calendar-data.ts linguist-generated=true

@@ -1,0 +1,21 @@
+node_modules/
+
+# 构建产物
+dist/
+dist-electron/
+release/
+release-new/
+release-check/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
+
+# 编辑器 / 本地环境
+.vscode/*
+!.vscode/extensions.json
+*.local
+
+# 本地工具缓存 / 工作记录
+.workbuddy/

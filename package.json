@@ -1,0 +1,75 @@
+{
+  "name": "countdown-days",
+  "version": "2.0.0",
+  "description": "倒数日 —— 假期 / 下班 / 生日 / 久坐 四合一倒计时桌面应用（Vue 3 + TypeScript + Element Plus）",
+  "main": "dist-electron/main.js",
+  "author": "demo",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Isnick/countdown-days.git"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "node scripts/dev.mjs",
+    "build:renderer": "vite build",
+    "build:electron": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/package.mjs",
+    "build:dir": "node scripts/build.mjs && node scripts/package.mjs --dir",
+    "package": "node scripts/package.mjs",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "build": {
+    "appId": "com.demo.countdown",
+    "productName": "CountdownDays",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist-electron/**/*",
+      "dist/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
+    "element-plus": "^2.14.8",
+    "esbuild": "^0.28.2",
+    "lunar-javascript": "^1.7.8",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8",
+    "vue": "^3.5.46",
+    "vue-tsc": "^3.3.14"
+  }
+}

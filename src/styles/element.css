@@ -1,0 +1,227 @@
+/**
+ * element.css —— Element Plus 深色主题接入
+ * 用 Element Plus 的 CSS 变量把它整体染成应用的深色调，
+ * 再对少量组件（主按钮 / 输入框 / 开关 / 弹窗）做细节修正。
+ */
+
+html.dark {
+  /* 底色 */
+  --el-bg-color: #11151d;
+  --el-bg-color-page: #0a0c11;
+  --el-bg-color-overlay: #161b25;
+  --el-fill-color: #11151d;
+  --el-fill-color-light: #161b25;
+  --el-fill-color-blank: #0c1017;
+
+  /* 文字 */
+  --el-text-color-primary: #e9edf6;
+  --el-text-color-regular: #c3cddd;
+  --el-text-color-secondary: #8b95a9;
+  --el-text-color-placeholder: #616c81;
+  --el-text-color-disabled: #4d5769;
+
+  /* 描边 */
+  --el-border-color: #293142;
+  --el-border-color-light: #262e3d;
+  --el-border-color-lighter: #232a38;
+  --el-border-color-extra-light: #1c2230;
+
+  /* 主色：和应用的青色强调一致 */
+  --el-color-primary: #5eead4;
+  --el-color-primary-light-3: #47d6c0;
+  --el-color-primary-light-5: #3bbfa9;
+  --el-color-primary-light-7: #2a8f80;
+  --el-color-primary-light-8: #226f64;
+  --el-color-primary-light-9: #173f3a;
+  --el-color-primary-dark-2: #6ff0da;
+
+  --el-color-danger: #f87171;
+  --el-color-warning: #f5c26b;
+  --el-color-success: #5eead4;
+
+  /* 尺寸 */
+  --el-border-radius-base: 9px;
+  --el-font-size-base: 12.5px;
+  --el-mask-color: rgba(5, 7, 11, 0.62);
+  --el-box-shadow-light: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- 输入类控件：和应用里原来的深色输入框对齐 ---------- */
+.el-input__wrapper,
+.el-select__wrapper {
+  background-color: #0c1017;
+  box-shadow: 0 0 0 1px #293142 inset;
+  border-radius: 9px;
+  padding: 1px 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.el-input__wrapper:hover,
+.el-select__wrapper:hover {
+  box-shadow: 0 0 0 1px #3a455c inset;
+}
+
+.el-input__wrapper.is-focus,
+.el-select__wrapper.is-focused {
+  box-shadow:
+    0 0 0 1px rgba(94, 234, 212, 0.55) inset,
+    0 0 0 3px rgba(94, 234, 212, 0.09);
+}
+
+.el-input__inner {
+  font-size: 12.5px;
+}
+
+/* 小尺寸再收紧一点，别把卡片撑高 */
+.el-select--small .el-select__wrapper,
+.el-input--small .el-input__wrapper {
+  min-height: 26px;
+  font-size: 11.5px;
+}
+
+.el-select--small .el-select__selected-item {
+  font-size: 11.5px;
+}
+
+/* 下拉面板 */
+.el-select__popper.el-popper,
+.el-picker__popper.el-popper {
+  border-color: #2a3345;
+  background: #161b25;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+.el-select-dropdown__item {
+  font-size: 12px;
+}
+
+.el-select-dropdown__item.is-selected {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.el-picker-panel,
+.el-time-panel {
+  background: #161b25;
+  border-color: #2a3345;
+}
+
+/* ---------- 按钮 ---------- */
+.el-button {
+  border-radius: 9px;
+  font-size: 12.5px;
+  border-color: #2b3444;
+  background: rgba(255, 255, 255, 0.045);
+  color: #dbe4f2;
+}
+
+.el-button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: #3d4a61;
+  color: #fff;
+}
+
+.el-button:active {
+  transform: translateY(1px);
+}
+
+/* 主按钮：青色渐变 + 深色字，和原来的视觉一致 */
+.el-button--primary,
+.el-button--primary:hover,
+.el-button--primary:focus,
+.el-button--primary:active {
+  background-image: linear-gradient(180deg, #6ff0da, #38c9b0);
+  background-color: transparent;
+  border-color: #4bdec5;
+  color: #052a23;
+  font-weight: 700;
+}
+
+.el-button--primary:hover {
+  filter: brightness(1.06);
+}
+
+.el-button--danger.is-plain {
+  color: #ffb4b4;
+  border-color: rgba(248, 113, 113, 0.3);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.el-button--danger.is-plain:hover {
+  background: rgba(248, 113, 113, 0.16);
+  color: #ffd0d0;
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+/* ---------- 开关 ---------- */
+.el-switch__core {
+  background: #232b3a;
+  border-color: #2d3648;
+  min-width: 38px;
+  height: 21px;
+}
+
+.el-switch__core .el-switch__action {
+  background-color: #77839a;
+  width: 15px;
+  height: 15px;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background: rgba(94, 234, 212, 0.22);
+  border-color: rgba(94, 234, 212, 0.6);
+}
+
+.el-switch.is-checked .el-switch__core .el-switch__action {
+  background-color: var(--teal);
+}
+
+/* ---------- 设置弹窗 ---------- */
+.settings-dialog {
+  border-radius: 18px;
+  border: 1px solid #2a3345;
+  background: linear-gradient(180deg, #171c26, #11151d);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  padding: 0;
+}
+
+.settings-dialog .el-dialog__header {
+  padding: 15px 18px;
+  margin: 0;
+  border-bottom: 1px solid #232b3a;
+}
+
+.settings-dialog .el-dialog__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #e9edf6;
+}
+
+.settings-dialog .el-dialog__headerbtn {
+  top: 12px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+}
+
+.settings-dialog .el-dialog__headerbtn .el-dialog__close {
+  color: var(--muted);
+}
+
+.settings-dialog .el-dialog__headerbtn:hover .el-dialog__close {
+  color: #fff;
+}
+
+.settings-dialog .el-dialog__body {
+  padding: 8px 18px 18px;
+  color: var(--text);
+  /* 小屏上设置项变多也不会顶出屏幕 */
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.el-overlay {
+  backdrop-filter: blur(6px);
+}

@@ -1,0 +1,32 @@
+/**
+ * tokens.css —— 设计变量
+ * 颜色 / 圆角 / 字体 / 标题栏高度都只在这里定义一次，组件里只引用变量。
+ */
+
+:root {
+  /* 底色与层次 */
+  --bg: #0a0c11;
+  --panel: #11151d;
+  --panel-2: #161b25;
+  --line: #232a38;
+  --line-soft: #1c2230;
+
+  /* 文字 */
+  --text: #e9edf6;
+  --muted: #8b95a9;
+  --dim: #616c81;
+
+  /* 强调色 */
+  --teal: #5eead4;
+  --blue: #7aa2ff;
+  --violet: #a78bfa;
+  --gold: #f5c26b;
+  --rose: #f87171;
+  --green: #86efac;
+  --red: #ff8a8a;
+
+  /* 形状与字体 */
+  --radius: 16px;
+  --titlebar-h: 40px;
+  --mono: 'Bahnschrift', 'DIN Alternate', 'Segoe UI Variable Display', ui-sans-serif, system-ui;
+}

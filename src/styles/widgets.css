@@ -1,0 +1,327 @@
+/**
+ * widgets.css —— 跨组件复用的界面零件
+ * 只放「多个卡片都在用」的样式：卡片外壳、状态胶囊、进度条、大号数字、表单格子、工作日芯片。
+ * 单个组件独有的样式写在各自的 <style scoped> 里。
+ */
+
+/* ---------- 页面骨架 ---------- */
+.stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.app {
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.4vh, 14px);
+  padding: clamp(10px, 1.7vh, 16px) clamp(16px, 2.4vw, 26px) clamp(8px, 1.3vh, 12px);
+  transform-origin: top center;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr);
+  gap: clamp(9px, 1.4vh, 14px);
+  flex: none;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(9px, 1.4vh, 14px);
+}
+
+/* ---------- 卡片外壳 ---------- */
+.card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(11px, 1.7vh, 16px) clamp(14px, 1.7vw, 20px);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(420px 200px at 10% -30%, var(--glow, transparent), transparent 72%);
+}
+
+.card > * {
+  position: relative;
+}
+
+.card-work {
+  --glow: rgba(94, 234, 212, 0.16);
+}
+
+.card-life {
+  --glow: rgba(167, 139, 250, 0.16);
+}
+
+.card-sit {
+  --glow: rgba(245, 194, 107, 0.13);
+}
+
+.card-progress {
+  --glow: rgba(122, 162, 255, 0.13);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px currentColor;
+}
+
+.dot-teal {
+  background: var(--teal);
+  color: var(--teal);
+}
+.dot-violet {
+  background: var(--violet);
+  color: var(--violet);
+}
+.dot-gold {
+  background: var(--gold);
+  color: var(--gold);
+}
+.dot-blue {
+  background: var(--blue);
+  color: var(--blue);
+}
+
+.card-label {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---------- 状态胶囊 ---------- */
+.pill {
+  font-size: 10.5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 234, 212, 0.28);
+  background: rgba(94, 234, 212, 0.1);
+  color: var(--teal);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.pill-muted {
+  border-color: #2c3546;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+}
+
+.pill-warn {
+  border-color: rgba(245, 194, 107, 0.3);
+  background: rgba(245, 194, 107, 0.1);
+  color: var(--gold);
+}
+
+.pill-off {
+  border-color: #2c3546;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--dim);
+}
+
+.pill-over {
+  border-color: rgba(248, 113, 113, 0.38);
+  background: rgba(248, 113, 113, 0.12);
+  color: #ffb3b3;
+}
+
+/* ---------- 大号倒计时数字 ---------- */
+.timer {
+  font-family: var(--mono);
+  font-size: clamp(32px, 5.4vh, 56px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+  margin: 6px 0 2px;
+  color: #eef6f4;
+  text-shadow: 0 0 28px rgba(94, 234, 212, 0.22);
+}
+
+.timer.is-off {
+  color: var(--gold);
+  text-shadow: 0 0 28px rgba(245, 194, 107, 0.18);
+}
+
+.timer.is-idle {
+  color: #9fb0c6;
+  text-shadow: none;
+}
+
+.timer.is-long {
+  font-size: clamp(24px, 4vh, 42px);
+  letter-spacing: 0;
+}
+
+/* ---------- 说明文字 ---------- */
+.card-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  min-height: 19px;
+}
+
+.card-sub b {
+  color: #cfd8e6;
+  font-weight: 600;
+}
+
+/* ---------- 进度条 ---------- */
+.bar {
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.055);
+  overflow: hidden;
+  margin-top: clamp(8px, 1.2vh, 12px);
+}
+
+.bar > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2bbfa6, var(--teal));
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-thin {
+  height: 4px;
+  margin-top: 10px;
+}
+
+.bar > i.violet {
+  background: linear-gradient(90deg, #7c5cf0, var(--violet));
+}
+.bar > i.blue {
+  background: linear-gradient(90deg, #4b74d6, var(--blue));
+}
+.bar > i.gold {
+  background: linear-gradient(90deg, #d99a3a, var(--gold));
+}
+.bar > i.rose {
+  background: linear-gradient(90deg, #d65454, var(--rose));
+}
+.bar > i.green {
+  background: linear-gradient(90deg, #46b374, var(--green));
+}
+
+/* ---------- 大数字（已活天数） ---------- */
+.age-num {
+  font-family: var(--mono);
+  font-size: clamp(26px, 4.3vh, 46px);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  margin: 10px 0 2px;
+  font-variant-numeric: tabular-nums;
+  color: #f0ecff;
+  text-shadow: 0 0 26px rgba(167, 139, 250, 0.22);
+}
+
+.age-num em {
+  font-style: normal;
+  font-size: 16px;
+  color: var(--violet);
+  margin-left: 6px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.age-num.is-empty {
+  font-size: clamp(20px, 2.9vh, 30px);
+  color: #8b95a9;
+  text-shadow: none;
+}
+
+/* ---------- 表单格子 ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.field > span {
+  font-size: 10.5px;
+  letter-spacing: 0.9px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+/* ---------- 工作日芯片 ---------- */
+.workdays {
+  display: flex;
+  gap: 4px;
+}
+
+.wd {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  font-size: 11.5px;
+  color: var(--dim);
+  background: #0d1118;
+  border: 1px solid #262e3d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.15s;
+  font-family: inherit;
+  padding: 0;
+}
+
+.wd:hover {
+  color: #d6deec;
+  border-color: #3a455c;
+}
+
+.wd.on {
+  color: #06231e;
+  background: linear-gradient(180deg, #6ff0da, #3ecdb4);
+  border-color: #4fdec4;
+  font-weight: 700;
+}
+
+@media (max-width: 1080px) {
+  .wd {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+  .workdays {
+    gap: 3px;
+  }
+}

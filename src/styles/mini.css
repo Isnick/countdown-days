@@ -1,0 +1,32 @@
+/**
+ * src/styles/mini.css —— 迷你胶囊页面的底子
+ * ------------------------------------------------------------------
+ * 窗口本身是透明的（见 electron/services/mini-window.ts），
+ * 所以这里千万不能有会铺满整屏的背景色，否则圆角外面会露出四个直角。
+ *
+ * 注意：这个页面不引 base.css（那份带页面渐变底），
+ * 所以盒模型重置得自己写一遍，否则卡片会按 content-box 长出去、底部被裁掉。
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: -apple-system, 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei', system-ui, sans-serif;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+#app {
+  height: 100%;
+}
